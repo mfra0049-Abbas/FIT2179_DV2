@@ -12,7 +12,7 @@
   "width": 860,
   "height": 300,
   "data": {
-    "url": "http://127.0.0.1:5500/data/06_digital_behaviour_score_by_state_2025.csv"
+    "url": "data/06_digital_behaviour_score_by_state_2025.csv"
   },
   "mark": {
     "type": "boxplot",
@@ -46,7 +46,9 @@
       "field": "digital_behaviour_score",
       "type": "quantitative",
       "title": "Digital behaviour score",
-      "scale": { "domain": [55, 80] },
+      "scale": {
+        "domain": [55, 80]
+      },
       "axis": {
         "grid": true,
         "gridColor": "#e2e8f0",
@@ -63,7 +65,9 @@
         "domain": ["Federal Territory", "Peninsular Malaysia", "East Malaysia"],
         "range": ["#0f172a", "#2563eb", "#38bdf8"]
       },
-      "legend": { "orient": "bottom" }
+      "legend": {
+        "orient": "bottom"
+      }
     },
     "tooltip": [
       { "field": "state",                   "type": "nominal",      "title": "State" },
@@ -78,7 +82,10 @@
       "domain": false,
       "tickColor": "#cbd5e1"
     },
-    "view": { "stroke": "#dbeafe", "strokeWidth": 1 },
+    "view": {
+      "stroke": "#dbeafe",
+      "strokeWidth": 1
+    },
     "legend": {
       "labelFontSize": 11,
       "titleFontSize": 12,

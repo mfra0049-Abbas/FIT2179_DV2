@@ -1,0 +1,124 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": {
+    "text": "Digital Behaviour Trends by Category, 2022–2025",
+    "subtitle": "Small multiples separate each digital behaviour trend so changes over time are easier to compare.",
+    "anchor": "start",
+    "fontSize": 18,
+    "subtitleFontSize": 12,
+    "color": "#0f172a",
+    "subtitleColor": "#475569"
+  },
+  "width": 250,
+  "height": 130,
+  "data": {
+    "url": "data/03_google_trends_digital_behaviour_interest_over_time_2022_2025.csv"
+  },
+  "mark": {
+    "type": "area",
+    "line": {
+      "color": "#2563eb",
+      "strokeWidth": 2
+    },
+    "color": {
+      "x1": 1,
+      "y1": 1,
+      "x2": 1,
+      "y2": 0,
+      "gradient": "linear",
+      "stops": [
+        {
+          "offset": 0,
+          "color": "#dbeafe"
+        },
+        {
+          "offset": 1,
+          "color": "#2563eb"
+        }
+      ]
+    },
+    "opacity": 0.85
+  },
+  "encoding": {
+    "facet": {
+      "field": "term_label",
+      "type": "nominal",
+      "columns": 2,
+      "title": null,
+      "sort": [
+        "Artificial intelligence",
+        "Digital wallet",
+        "Online banking",
+        "Online shopping",
+        "Online streaming"
+      ],
+      "header": {
+        "labelFontSize": 12,
+        "labelFontWeight": "bold",
+        "labelColor": "#0f172a"
+      }
+    },
+    "x": {
+      "field": "date",
+      "type": "temporal",
+      "title": "Date",
+      "axis": {
+        "format": "%Y",
+        "labelAngle": 0,
+        "labelColor": "#475569",
+        "titleColor": "#334155",
+        "grid": false
+      }
+    },
+    "y": {
+      "field": "interest_index",
+      "type": "quantitative",
+      "title": "Interest index",
+      "scale": {
+        "domain": [0, 100]
+      },
+      "axis": {
+        "grid": true,
+        "labelColor": "#475569",
+        "titleColor": "#334155"
+      }
+    },
+    "tooltip": [
+      {
+        "field": "term_label",
+        "type": "nominal",
+        "title": "Digital behaviour"
+      },
+      {
+        "field": "date",
+        "type": "temporal",
+        "title": "Date",
+        "format": "%b %Y"
+      },
+      {
+        "field": "interest_index",
+        "type": "quantitative",
+        "title": "Interest index",
+        "format": ".1f"
+      }
+    ]
+  },
+  "resolve": {
+    "scale": {
+      "y": "shared"
+    }
+  },
+  "config": {
+    "font": "Inter, Arial, sans-serif",
+    "background": "#ffffff",
+    "view": {
+      "stroke": "#dbeafe",
+      "strokeWidth": 1
+    },
+    "axis": {
+      "domain": false,
+      "tickColor": "#cbd5e1",
+      "gridColor": "#e2e8f0"
+    }
+  }
+}

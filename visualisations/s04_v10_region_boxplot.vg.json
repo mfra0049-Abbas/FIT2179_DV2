@@ -1,0 +1,89 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": {
+    "text": "Regional Digital Behaviour Distribution, 2025",
+    "subtitle": "Box plots compare how state digital behaviour scores vary across Malaysian region groups.",
+    "anchor": "start",
+    "fontSize": 18,
+    "subtitleFontSize": 12,
+    "color": "#0f172a",
+    "subtitleColor": "#475569"
+  },
+  "width": 860,
+  "height": 300,
+  "data": {
+    "url": "http://127.0.0.1:5500/data/06_digital_behaviour_score_by_state_2025.csv"
+  },
+  "mark": {
+    "type": "boxplot",
+    "extent": "min-max",
+    "size": 50,
+    "ticks": true,
+    "median": {
+      "color": "#ffffff",
+      "strokeWidth": 3
+    },
+    "box": {
+      "strokeWidth": 0
+    },
+    "rule": {
+      "strokeWidth": 2
+    }
+  },
+  "encoding": {
+    "y": {
+      "field": "region_group",
+      "type": "nominal",
+      "title": null,
+      "sort": ["Federal Territory", "Peninsular Malaysia", "East Malaysia"],
+      "axis": {
+        "labelFontSize": 13,
+        "labelFontWeight": "bold",
+        "labelColor": "#0f172a"
+      }
+    },
+    "x": {
+      "field": "digital_behaviour_score",
+      "type": "quantitative",
+      "title": "Digital behaviour score",
+      "scale": { "domain": [55, 80] },
+      "axis": {
+        "grid": true,
+        "gridColor": "#e2e8f0",
+        "labelColor": "#475569",
+        "titleColor": "#334155",
+        "titleFontWeight": "bold"
+      }
+    },
+    "color": {
+      "field": "region_group",
+      "type": "nominal",
+      "title": "Region",
+      "scale": {
+        "domain": ["Federal Territory", "Peninsular Malaysia", "East Malaysia"],
+        "range": ["#0f172a", "#2563eb", "#38bdf8"]
+      },
+      "legend": { "orient": "bottom" }
+    },
+    "tooltip": [
+      { "field": "state",                   "type": "nominal",      "title": "State" },
+      { "field": "region_group",            "type": "nominal",      "title": "Region" },
+      { "field": "digital_behaviour_score", "type": "quantitative", "title": "Digital behaviour score", "format": ".1f" }
+    ]
+  },
+  "config": {
+    "font": "Inter, Arial, sans-serif",
+    "background": "#ffffff",
+    "axis": {
+      "domain": false,
+      "tickColor": "#cbd5e1"
+    },
+    "view": { "stroke": "#dbeafe", "strokeWidth": 1 },
+    "legend": {
+      "labelFontSize": 11,
+      "titleFontSize": 12,
+      "labelColor": "#475569",
+      "titleColor": "#334155"
+    }
+  }
+}

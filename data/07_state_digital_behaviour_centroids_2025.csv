@@ -1,0 +1,17 @@
+state_key,state,region_group,latitude,longitude,digital_behaviour_score,average_digital_behaviour_interest,dominant_digital_behaviour,dominant_interest_index,population_million
+selangor,Selangor,Peninsular Malaysia,3.0738,101.5183,72.6,72.6,Online shopping,91.0,7.4068
+johor,Johor,Peninsular Malaysia,1.4854,103.7618,56.8,56.8,Online shopping,80.0,4.2059
+sabah,Sabah,East Malaysia,5.9788,116.0753,59.2,59.2,Digital wallet,84.0,3.7596
+perak,Perak,Peninsular Malaysia,4.5975,101.0901,63.4,63.4,Digital wallet,76.0,2.5749
+sarawak,Sarawak,East Malaysia,1.5533,110.3592,64.6,64.6,Digital wallet,86.0,2.5298
+kedah,Kedah,Peninsular Malaysia,6.1184,100.3685,73.2,73.2,Digital wallet,89.0,2.228
+w.p. kuala lumpur,W.P. Kuala Lumpur,Federal Territory,3.139,101.6869,76.4,76.4,Digital wallet,100.0,2.0741
+kelantan,Kelantan,Peninsular Malaysia,6.1254,102.2386,66.4,66.4,Online banking,100.0,1.9077
+pulau pinang,Pulau Pinang,Peninsular Malaysia,5.4141,100.3288,66.0,66.0,Online shopping,92.0,1.8033
+pahang,Pahang,Peninsular Malaysia,3.8126,103.3256,61.2,61.2,Online streaming,82.0,1.6782
+terengganu,Terengganu,Peninsular Malaysia,5.3117,103.1324,64.6,64.6,Online streaming,81.0,1.2469
+negeri sembilan,Negeri Sembilan,Peninsular Malaysia,2.7258,101.9424,66.4,66.4,Digital wallet,78.0,1.2446
+melaka,Melaka,Peninsular Malaysia,2.1896,102.2501,71.6,71.6,Digital wallet,92.0,1.0525
+perlis,Perlis,Peninsular Malaysia,6.4449,100.2048,69.8,69.8,Digital wallet,81.0,0.2978
+w.p. putrajaya,W.P. Putrajaya,Federal Territory,2.9264,101.6964,70.75,70.75,Artificial intelligence,100.0,0.1208
+w.p. labuan,W.P. Labuan,Federal Territory,5.2831,115.2308,68.5,68.5,Online streaming,77.0,0.1009

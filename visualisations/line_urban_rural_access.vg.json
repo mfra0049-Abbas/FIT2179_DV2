@@ -1,0 +1,134 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": {
+    "text": "The Rural Internet Access Gap Is Slowly Narrowing",
+    "subtitle": "Difference between urban and rural household internet access, measured in percentage points.",
+    "anchor": "start",
+    "fontSize": 18,
+    "subtitleFontSize": 12,
+    "color": "#0f172a",
+    "subtitleColor": "#475569"
+  },
+  "width": 540,
+  "height": 300,
+  "data": {
+    "url": "../data/01_dosm_ict_access_full_2022_2025.csv"
+  },
+  "transform": [
+    {
+      "filter": "datum.indicator_id == 'household_internet_access' && datum.group_type == 'Strata'"
+    },
+    {
+      "pivot": "chart_label",
+      "value": "value_percent",
+      "groupby": ["year"]
+    },
+    {
+      "calculate": "datum['Urban households'] - datum['Rural households']",
+      "as": "gap"
+    },
+    {
+      "calculate": "format(datum.gap, '.1f') + ' pp'",
+      "as": "gap_label"
+    }
+  ],
+  "layer": [
+    {
+      "mark": {
+        "type": "bar",
+        "cornerRadiusEnd": 8,
+        "height": 34
+      },
+      "encoding": {
+        "y": {
+          "field": "year",
+          "type": "ordinal",
+          "title": "Year",
+          "sort": ["2022", "2023", "2024", "2025"]
+        },
+        "x": {
+          "field": "gap",
+          "type": "quantitative",
+          "title": "Urban-rural gap, percentage points",
+          "scale": {
+            "domain": [0, 10]
+          }
+        },
+        "color": {
+          "field": "gap",
+          "type": "quantitative",
+          "title": "Gap size",
+          "scale": {
+            "range": ["#fed7aa", "#f97316"]
+          },
+          "legend": null
+        },
+        "tooltip": [
+          {
+            "field": "year",
+            "type": "ordinal",
+            "title": "Year"
+          },
+          {
+            "field": "Urban households",
+            "type": "quantitative",
+            "title": "Urban access (%)",
+            "format": ".1f"
+          },
+          {
+            "field": "Rural households",
+            "type": "quantitative",
+            "title": "Rural access (%)",
+            "format": ".1f"
+          },
+          {
+            "field": "gap",
+            "type": "quantitative",
+            "title": "Gap, percentage points",
+            "format": ".1f"
+          }
+        ]
+      }
+    },
+    {
+      "mark": {
+        "type": "text",
+        "align": "left",
+        "baseline": "middle",
+        "dx": 8,
+        "fontSize": 12,
+        "fontWeight": "bold",
+        "color": "#0f172a"
+      },
+      "encoding": {
+        "y": {
+          "field": "year",
+          "type": "ordinal",
+          "sort": ["2022", "2023", "2024", "2025"]
+        },
+        "x": {
+          "field": "gap",
+          "type": "quantitative"
+        },
+        "text": {
+          "field": "gap_label",
+          "type": "nominal"
+        }
+      }
+    }
+  ],
+  "config": {
+    "font": "Inter, Arial, sans-serif",
+    "background": "#ffffff",
+    "axis": {
+      "labelFontSize": 11,
+      "titleFontSize": 12,
+      "gridColor": "#e6e8ec",
+      "domainColor": "#cbd5e1",
+      "tickColor": "#cbd5e1"
+    },
+    "view": {
+      "stroke": null
+    }
+  }
+}

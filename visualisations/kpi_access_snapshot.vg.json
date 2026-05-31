@@ -1,0 +1,136 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": {
+    "text": "2025 Access Snapshot Against a 90% Benchmark",
+    "subtitle": "Each ICT indicator is shown as a coloured point against the 2025 percentage scale.",
+    "anchor": "start",
+    "fontSize": 18,
+    "subtitleFontSize": 12,
+    "color": "#0f172a",
+    "subtitleColor": "#475569"
+  },
+  "width": 720,
+  "height": 280,
+  "data": {
+    "url": "../data/01_dosm_ict_access_full_2022_2025.csv"
+  },
+  "transform": [
+    {
+      "filter": "datum.group == 'Malaysia' && datum.year == 2025"
+    },
+    {
+      "calculate": "format(datum.value_percent, '.1f') + '%'",
+      "as": "value_label"
+    },
+    {
+      "calculate": "datum.indicator_label == 'Individual mobile phone usage' ? 'Mobile phone usage' : datum.indicator_label == 'Individual internet usage' ? 'Internet usage' : datum.indicator_label == 'Household internet access' ? 'Household internet access' : datum.indicator_label == 'Household computer access' ? 'Household computer access' : 'Individual computer usage'",
+      "as": "short_label"
+    }
+  ],
+  "encoding": {
+    "y": {
+      "field": "short_label",
+      "type": "nominal",
+      "title": null,
+      "sort": [
+        "Mobile phone usage",
+        "Internet usage",
+        "Household internet access",
+        "Household computer access",
+        "Individual computer usage"
+      ],
+      "axis": {
+        "labelFontSize": 12,
+        "labelLimit": 230
+      }
+    },
+    "x": {
+      "field": "value_percent",
+      "type": "quantitative",
+      "title": "2025 value (%)",
+      "scale": {
+        "domain": [75, 100]
+      },
+      "axis": {
+        "gridColor": "#e6e8ec",
+        "labelFontSize": 11,
+        "titleFontSize": 12
+      }
+    }
+  },
+  "layer": [
+    {
+      "mark": {
+        "type": "point",
+        "filled": true,
+        "size": 190,
+        "stroke": "#ffffff",
+        "strokeWidth": 1.8
+      },
+      "encoding": {
+        "color": {
+          "field": "short_label",
+          "type": "nominal",
+          "legend": null,
+          "scale": {
+            "domain": [
+              "Household internet access",
+              "Internet usage",
+              "Mobile phone usage",
+              "Household computer access",
+              "Individual computer usage"
+            ],
+            "range": [
+              "#0f766e",
+              "#7c3aed",
+              "#dc2626",
+              "#2563eb",
+              "#f97316"
+            ]
+          }
+        },
+        "tooltip": [
+          {
+            "field": "indicator_label",
+            "type": "nominal",
+            "title": "Indicator"
+          },
+          {
+            "field": "value_percent",
+            "type": "quantitative",
+            "title": "2025 value (%)",
+            "format": ".1f"
+          }
+        ]
+      }
+    },
+    {
+      "mark": {
+        "type": "text",
+        "align": "left",
+        "baseline": "middle",
+        "dx": 11,
+        "fontSize": 12,
+        "fontWeight": "bold",
+        "color": "#0f172a"
+      },
+      "encoding": {
+        "text": {
+          "field": "value_label",
+          "type": "nominal"
+        }
+      }
+    }
+  ],
+  "config": {
+    "font": "Inter, Arial, sans-serif",
+    "background": "#ffffff",
+    "axis": {
+      "domainColor": "#cbd5e1",
+      "tickColor": "#cbd5e1"
+    },
+    "view": {
+      "stroke": null
+    }
+  }
+}

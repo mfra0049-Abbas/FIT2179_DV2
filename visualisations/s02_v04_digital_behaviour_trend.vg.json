@@ -1,0 +1,101 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": {
+    "text": "Digital Behaviour Search Interest, 2022–2025",
+    "subtitle": "Google Trends shows how Malaysian search interest changed across five digital behaviour categories.",
+    "anchor": "start",
+    "fontSize": 18,
+    "subtitleFontSize": 12,
+    "color": "#0f172a",
+    "subtitleColor": "#475569"
+  },
+  "width": 980,
+  "height": 360,
+  "data": {
+    "url": "../data/03_google_trends_digital_behaviour_interest_over_time_2022_2025.csv"
+  },
+  "mark": {
+    "type": "line",
+    "interpolate": "monotone",
+    "strokeWidth": 2.5
+  },
+  "encoding": {
+    "x": {
+      "field": "date",
+      "type": "temporal",
+      "title": "Year",
+      "axis": {
+        "format": "%Y",
+        "labelAngle": 0
+      }
+    },
+    "y": {
+      "field": "interest_index",
+      "type": "quantitative",
+      "title": "Google Trends interest index"
+    },
+    "color": {
+      "field": "term_label",
+      "type": "nominal",
+      "title": "Digital behaviour",
+      "scale": {
+        "domain": [
+          "Artificial intelligence",
+          "Digital wallet",
+          "Online banking",
+          "Online shopping",
+          "Online streaming"
+        ],
+        "range": [
+          "#2563eb",
+          "#0f766e",
+          "#7c3aed",
+          "#f97316",
+          "#dc2626"
+        ]
+      },
+      "legend": {
+        "orient": "bottom",
+        "columns": 3
+      }
+    },
+    "tooltip": [
+      {
+        "field": "date",
+        "type": "temporal",
+        "title": "Date",
+        "format": "%b %Y"
+      },
+      {
+        "field": "term_label",
+        "type": "nominal",
+        "title": "Digital behaviour"
+      },
+      {
+        "field": "interest_index",
+        "type": "quantitative",
+        "title": "Interest index",
+        "format": ".1f"
+      }
+    ]
+  },
+  "config": {
+    "font": "Inter, Arial, sans-serif",
+    "background": "#ffffff",
+    "axis": {
+      "labelFontSize": 11,
+      "titleFontSize": 12,
+      "gridColor": "#e6e8ec",
+      "domainColor": "#cbd5e1",
+      "tickColor": "#cbd5e1"
+    },
+    "legend": {
+      "labelFontSize": 11,
+      "titleFontSize": 12,
+      "symbolSize": 90
+    },
+    "view": {
+      "stroke": null
+    }
+  }
+}

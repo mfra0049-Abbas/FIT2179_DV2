@@ -1,0 +1,98 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": {
+    "text": "Malaysia’s Digital Access Baseline Is Already High",
+    "subtitle": "National ICT indicators show high internet and mobile usage, while computer usage remains lower.",
+    "anchor": "start",
+    "fontSize": 18,
+    "subtitleFontSize": 12,
+    "color": "#0f172a",
+    "subtitleColor": "#475569"
+  },
+  "width": 620,
+  "height": 340,
+  "data": {
+    "url": "../data/01_dosm_ict_access_full_2022_2025.csv"
+  },
+  "transform": [
+    {
+      "filter": "datum.group == 'Malaysia'"
+    }
+  ],
+  "mark": {
+    "type": "line",
+    "point": {
+      "filled": true,
+      "size": 70
+    },
+    "strokeWidth": 3
+  },
+  "encoding": {
+    "x": {
+      "field": "year",
+      "type": "ordinal",
+      "title": "Year",
+      "axis": {
+        "labelAngle": 0
+      }
+    },
+    "y": {
+      "field": "value_percent",
+      "type": "quantitative",
+      "title": "Percentage (%)",
+      "scale": {
+        "domain": [75, 100]
+      }
+    },
+    "color": {
+      "field": "indicator_label",
+      "type": "nominal",
+      "title": "ICT indicator",
+      "scale": {
+        "range": ["#2563eb", "#0f766e", "#f97316", "#7c3aed", "#dc2626"]
+      },
+      "legend": {
+        "orient": "bottom",
+        "columns": 2,
+        "labelLimit": 240
+      }
+    },
+    "tooltip": [
+      {
+        "field": "year",
+        "type": "ordinal",
+        "title": "Year"
+      },
+      {
+        "field": "indicator_label",
+        "type": "nominal",
+        "title": "Indicator"
+      },
+      {
+        "field": "value_percent",
+        "type": "quantitative",
+        "title": "Value (%)",
+        "format": ".1f"
+      }
+    ]
+  },
+  "config": {
+    "font": "Inter, Arial, sans-serif",
+    "background": "#ffffff",
+    "axis": {
+      "labelFontSize": 11,
+      "titleFontSize": 12,
+      "gridColor": "#e6e8ec",
+      "domainColor": "#cbd5e1",
+      "tickColor": "#cbd5e1"
+    },
+    "legend": {
+      "labelFontSize": 10,
+      "titleFontSize": 12,
+      "symbolSize": 90
+    },
+    "view": {
+      "stroke": null
+    }
+  }
+}

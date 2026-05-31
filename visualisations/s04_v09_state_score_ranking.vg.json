@@ -1,0 +1,98 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": {
+    "text": "State × Digital Behaviour Heatmap, 2022–2025",
+    "subtitle": "Darker cells show stronger Google Trends interest across Malaysian states and digital behaviour categories.",
+    "anchor": "start",
+    "fontSize": 18,
+    "subtitleFontSize": 12,
+    "color": "#0f172a",
+    "subtitleColor": "#475569"
+  },
+  "width": 880,
+  "height": 460,
+  "padding": { "left": 10, "right": 20, "top": 8, "bottom": 8 },
+  "data": {
+    "url": "data/04_google_trends_digital_behaviour_by_state_2022_2025.csv"
+  },
+  "mark": {
+    "type": "rect",
+    "stroke": "#ffffff",
+    "strokeWidth": 2,
+    "cornerRadius": 0
+  },
+  "encoding": {
+    "x": {
+      "field": "term_label",
+      "type": "nominal",
+      "title": "Digital behaviour",
+      "sort": [
+        "Artificial intelligence",
+        "Digital wallet",
+        "Online banking",
+        "Online shopping",
+        "Online streaming"
+      ],
+      "axis": {
+        "orient": "top",
+        "labelAngle": 0,
+        "labelFontSize": 12,
+        "labelFontWeight": "bold",
+        "labelColor": "#334155",
+        "titleColor": "#334155",
+        "titleFontWeight": "bold",
+        "titlePadding": 10
+      },
+      "scale": { "paddingInner": 0, "paddingOuter": 0 }
+    },
+    "y": {
+      "field": "state",
+      "type": "nominal",
+      "title": null,
+      "sort": {
+        "field": "interest_index",
+        "op": "mean",
+        "order": "descending"
+      },
+      "axis": {
+        "labelFontSize": 11,
+        "labelColor": "#334155",
+        "labelLimit": 165
+      },
+      "scale": { "paddingInner": 0, "paddingOuter": 0 }
+    },
+    "color": {
+      "field": "interest_index",
+      "type": "quantitative",
+      "title": "Interest index",
+      "scale": {
+        "domain": [0, 100],
+        "range": ["#f0f9ff", "#bae6fd", "#38bdf8", "#2563eb", "#0f172a"]
+      },
+      "legend": {
+        "orient": "bottom",
+        "gradientLength": 320,
+        "titleFontWeight": "bold"
+      }
+    },
+    "tooltip": [
+      { "field": "state",          "type": "nominal",      "title": "State" },
+      { "field": "term_label",     "type": "nominal",      "title": "Digital behaviour" },
+      { "field": "interest_index", "type": "quantitative", "title": "Interest index", "format": ".1f" },
+      { "field": "time_range",     "type": "nominal",      "title": "Time range" },
+      { "field": "source_name",    "type": "nominal",      "title": "Source" }
+    ]
+  },
+  "config": {
+    "font": "Inter, Arial, sans-serif",
+    "background": "#ffffff",
+    "axis": { "domain": false, "ticks": false, "grid": false },
+    "view": { "stroke": null },
+    "legend": {
+      "labelFontSize": 11,
+      "titleFontSize": 12,
+      "labelColor": "#475569",
+      "titleColor": "#334155"
+    }
+  }
+}

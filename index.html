@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+
+  <title>Connected Malaysia</title>
+
+  <link rel="stylesheet" href="css/style.css">
+
+  <script src="https://cdn.jsdelivr.net/npm/vega@5"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vega-lite@5"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vega-embed@6"></script>
+</head>
+
+<body>
+
+  <main>
+
+    <section class="hero dashboard-hero">
+      <div class="hero-content">
+        <p class="eyebrow">FIT2179 Data Visualisation 2</p>
+
+        <h1>Connected Malaysia</h1>
+
+        <h2>
+          Tracking digital access, online behaviour,
+          and state-level readiness across Malaysia.
+        </h2>
+
+        <p class="hero-text">
+          Malaysia is highly connected, but connection alone does not tell the
+          full story. This visualisation follows national access trends, rural
+          and urban differences, online search behaviour, and state-level
+          digital readiness.
+        </p>
+      </div>
+
+      <div class="hero-side-panel">
+        <p>Project lens</p>
+        <h3>Digital readiness</h3>
+        <span>Access + behaviour + geography</span>
+      </div>
+    </section>
+
+    <section class="metric-ribbon">
+      <div class="metric-card">
+        <span class="metric-label">Household internet access</span>
+        <strong>97.1%</strong>
+        <p>DOSM 2025 national value</p>
+      </div>
+
+      <div class="metric-card">
+        <span class="metric-label">Rural household access</span>
+        <strong>90.7%</strong>
+        <p>Still below urban access</p>
+      </div>
+
+      <div class="metric-card">
+        <span class="metric-label">Population base</span>
+        <strong>34.2M</strong>
+        <p>2025 state population context</p>
+      </div>
+
+      <div class="metric-card">
+        <span class="metric-label">Behaviour categories</span>
+        <strong>5</strong>
+        <p>Google Trends search themes</p>
+      </div>
+    </section>
+
+    <section class="story-structure">
+      <div>
+        <p class="section-kicker">Story framework</p>
+        <h2>The visual story structure</h2>
+      </div>
+
+      <nav class="section-tabs" aria-label="Dashboard sections">
+        <a href="#section-01">Access baseline</a>
+        <a href="#section-02">Digital behaviour</a>
+        <a href="#section-03">Geography</a>
+        <a href="#section-04">Readiness comparison</a>
+        <a href="#section-05">Conclusion</a>
+        <a href="#metadata">Metadata</a>
+      </nav>
+    </section>
+
+    <section id="section-01" class="section-block">
+      <div class="section-header">
+        <p class="section-label">Section 01</p>
+
+        <h2>National digital access baseline</h2>
+
+        <p>
+          The first section establishes Malaysia’s national ICT access position.
+          It compares overall access indicators with the remaining urban-rural
+          internet access gap, showing that digital access is high but not
+          evenly experienced.
+        </p>
+
+        <div class="insight-box">
+          <strong>Section takeaway:</strong>
+          Malaysia’s access baseline is strong, but deeper digital participation
+          and rural access still require attention.
+        </div>
+      </div>
+
+      <div class="two-chart-grid">
+        <div class="chart-card">
+          <div id="line_ict_access"></div>
+        </div>
+
+        <div class="chart-card">
+          <div id="line_urban_rural_access"></div>
+        </div>
+      </div>
+
+      <div class="wide-chart-card">
+        <div id="kpi_access_snapshot"></div>
+      </div>
+    </section>
+
+    <section id="section-02" class="section-block">
+      <div class="section-header">
+        <p class="section-label">Section 02</p>
+
+        <h2>Digital behaviour over time</h2>
+
+        <p>
+          After establishing Malaysia’s access baseline, this section examines
+          what Malaysians search for online. Google Trends is used as a behavioural
+          signal for interest in artificial intelligence, digital wallets,
+          online banking, online shopping, and online streaming.
+        </p>
+
+        <div class="insight-box">
+          <strong>Section takeaway:</strong>
+          Search behaviour reveals how digital access translates into everyday
+          online activity across finance, shopping, entertainment, and emerging AI.
+        </div>
+      </div>
+
+      <div class="wide-chart-card">
+        <div id="s02_v04_digital_behaviour_trend"></div>
+      </div>
+
+      <div class="two-chart-grid section-two-grid">
+        <div class="chart-card">
+          <div id="s02_v05_average_interest_ranking"></div>
+        </div>
+
+        <div class="chart-card">
+          <div id="s02_v06_average_interest_treemap"></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="section-03" class="section-block">
+      <div class="section-header">
+        <p class="section-label">Section 03</p>
+
+        <h2>State-level digital behaviour geography</h2>
+
+        <p>
+          After identifying the digital behaviours that dominate nationally,
+          this section maps where digital behaviour appears stronger across
+          Malaysian states and federal territories.
+        </p>
+
+        <div class="insight-box">
+          <strong>Section takeaway:</strong>
+          Digital behaviour is not evenly distributed across Malaysia. Mapping
+          state-level scores helps reveal where digital demand is stronger.
+        </div>
+      </div>
+
+      <div class="wide-chart-card">
+        <div id="s03_v07_digital_behaviour_score_map"></div>
+      </div>
+
+      <div class="wide-chart-card">
+        <div id="s03_v08_digital_behaviour_gravity_map"></div>
+      </div>
+    </section>
+
+    <section id="section-04" class="section-block">
+      <div class="section-header">
+        <p class="section-label">Section 04</p>
+
+        <h2>State-level digital readiness comparison</h2>
+
+        <p>
+          After mapping where digital behaviour appears stronger, this section
+          compares Malaysian states and federal territories directly. It examines
+          behaviour patterns by state, regional score distributions, and each
+          state's dominant digital behaviour.
+        </p>
+
+        <div class="insight-box">
+          <strong>Section takeaway:</strong>
+          State and regional comparisons make geographic differences easier to
+          interpret and show which places appear more digitally ready.
+        </div>
+      </div>
+
+      <div class="wide-chart-card">
+        <div id="s04_v09_state_score_ranking"></div>
+      </div>
+
+      <div class="wide-chart-card">
+        <div id="s04_v10_region_boxplot"></div>
+      </div>
+
+      <div class="wide-chart-card">
+        <div id="s04_v11_dominant_behaviour_by_state"></div>
+      </div>
+    </section>
+
+    <section id="section-05" class="section-block">
+      <div class="section-header">
+        <p class="section-label">Section 05</p>
+
+        <h2>Digital readiness profile and conclusion</h2>
+
+        <p>
+          The final section brings population context and time-series comparison
+          into the analysis. It tests whether larger states also show stronger
+          digital behaviour, then concludes by separating national digital
+          behaviour trends into small multiples.
+        </p>
+
+        <div class="insight-box">
+          <strong>Section takeaway:</strong>
+          Digital readiness is not explained by population size alone. Behaviour
+          patterns vary by both geography and digital activity category.
+        </div>
+      </div>
+
+      <div class="wide-chart-card">
+        <div id="s05_v12_population_behaviour_scatter"></div>
+      </div>
+
+      <div class="wide-chart-card">
+        <div id="s05_v13_behaviour_trend_small_multiples"></div>
+      </div>
+    </section>
+
+    <section id="metadata" class="metadata-section">
+      <div class="metadata-card">
+        <h2>Data sources and metadata</h2>
+
+        <p>
+          This visualisation uses publicly available and prepared datasets to explore
+          Malaysia’s digital access, online behaviour, and state-level digital
+          readiness between 2022 and 2025.
+        </p>
+
+        <div class="metadata-grid">
+          <div>
+            <h3>Project details</h3>
+            <ul>
+              <li>Student: Muhammad Abbas Fraz</li>
+              <li>Unit: FIT2179 Data Visualisation 2</li>
+              <li>Project title: Connected Malaysia</li>
+              <li>Theme: Digital access, online behaviour, and digital readiness</li>
+            </ul>
+          </div>
+
+          <div>
+            <h3>Primary data sources</h3>
+            <ul>
+              <li>Department of Statistics Malaysia ICT access indicators, 2022–2025</li>
+              <li>Google Trends digital behaviour interest data, 2022–2025</li>
+              <li>Malaysia state population data, 2022–2025</li>
+              <li>Malaysia district and state boundary GeoJSON files for geographic mapping</li>
+            </ul>
+          </div>
+
+          <div>
+            <h3>Prepared data files</h3>
+            <ul>
+              <li>01_dosm_ict_access_full_2022_2025.csv</li>
+              <li>03_google_trends_digital_behaviour_interest_over_time_2022_2025.csv</li>
+              <li>04_google_trends_digital_behaviour_by_state_2022_2025.csv</li>
+              <li>06_digital_behaviour_score_by_state_2025.csv</li>
+              <li>07_state_digital_behaviour_centroids_2025.csv</li>
+            </ul>
+          </div>
+
+          <div>
+            <h3>Visualisation tools</h3>
+            <ul>
+              <li>Vega-Lite for all charts and maps</li>
+              <li>HTML, CSS, and JavaScript for webpage structure</li>
+              <li>VS Code and Live Server for local development</li>
+              <li>Interactive tooltips used to provide state-level details</li>
+            </ul>
+          </div>
+
+          <div>
+            <h3>Important notes</h3>
+            <ul>
+              <li>Google Trends values are relative interest indices, not absolute search counts.</li>
+              <li>State-level digital behaviour scores are constructed from selected digital behaviour indicators.</li>
+              <li>Some maps use district polygons for geographic detail while colour represents state-level scores.</li>
+              <li>Population values are used as contextual indicators, not as direct measures of digital readiness.</li>
+            </ul>
+          </div>
+
+          <div>
+            <h3>Design focus</h3>
+            <ul>
+              <li>Five-section storytelling structure</li>
+              <li>Combination of trends, rankings, heatmaps, maps, and profile charts</li>
+              <li>Consistent blue visual theme across the dashboard</li>
+              <li>Focus on accessibility, readability, and comparison across states</li>
+            </ul>
+          </div>
+        </div>
+
+        <p class="metadata-small">
+          Created by Muhammad Abbas Fraz for FIT2179 Data Visualisation 2. All
+          visualisations are designed to support a storytelling view of Malaysia’s
+          digital access, digital behaviour, and state-level readiness.
+        </p>
+      </div>
+    </section>
+
+  </main>
+
+  <script src="js/main.js"></script>
+</body>
+</html>

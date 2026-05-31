@@ -1,0 +1,89 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": {
+    "text": "State Digital Behaviour Gravity Map",
+    "subtitle": "Bubbles are placed at state locations; larger and darker bubbles indicate stronger digital behaviour scores. Hover for details.",
+    "anchor": "start",
+    "fontSize": 18,
+    "subtitleFontSize": 12,
+    "color": "#0f172a",
+    "subtitleColor": "#475569"
+  },
+  "width": 760,
+  "height": 500,
+  "projection": {
+    "type": "mercator",
+    "center": [109.69, 3.95],
+    "scale": 2000,
+    "translate": [450, 320]
+  },
+  "layer": [
+    {
+      "data": {
+        "url": "data/05_malaysia_districts_coloured_by_state_score_vl_ready.geojson",
+        "format": {
+          "type": "json",
+          "property": "features"
+        }
+      },
+      "mark": {
+        "type": "geoshape",
+        "fill": "#e8f4f8",
+        "stroke": "#94a3b8",
+        "strokeWidth": 0.6
+      }
+    },
+    {
+      "data": {
+        "url": "data/07_state_digital_behaviour_centroids_2025.csv"
+      },
+      "mark": {
+        "type": "circle",
+        "opacity": 0.75,
+        "stroke": "#ffffff",
+        "strokeWidth": 2
+      },
+      "encoding": {
+        "longitude": { "field": "longitude", "type": "quantitative" },
+        "latitude":  { "field": "latitude",  "type": "quantitative" },
+        "size": {
+          "field": "digital_behaviour_score",
+          "type": "quantitative",
+          "title": "Digital behaviour score",
+          "scale": { "domain": [55, 77], "range": [80, 800] },
+          "legend": { "orient": "bottom", "title": "Digital behaviour score" }
+        },
+        "color": {
+          "field": "digital_behaviour_score",
+          "type": "quantitative",
+          "title": "Digital behaviour score",
+          "scale": {
+            "domain": [55, 77],
+            "range": ["#bfdbfe", "#60a5fa", "#2563eb", "#0f172a"]
+          },
+          "legend": { "orient": "bottom", "gradientLength": 260 }
+        },
+        "tooltip": [
+          { "field": "state",                              "type": "nominal",      "title": "State" },
+          { "field": "region_group",                       "type": "nominal",      "title": "Region" },
+          { "field": "digital_behaviour_score",            "type": "quantitative", "title": "Digital behaviour score",    "format": ".1f" },
+          { "field": "average_digital_behaviour_interest", "type": "quantitative", "title": "Average behaviour interest", "format": ".1f" },
+          { "field": "dominant_digital_behaviour",         "type": "nominal",      "title": "Dominant behaviour" },
+          { "field": "dominant_interest_index",            "type": "quantitative", "title": "Dominant interest index",    "format": ".1f" },
+          { "field": "population_million",                 "type": "quantitative", "title": "Population (million)",       "format": ".2f" }
+        ]
+      }
+    }
+  ],
+  "config": {
+    "background": "#ffffff",
+    "view": { "stroke": null },
+    "legend": {
+      "labelFontSize": 11,
+      "titleFontSize": 12,
+      "labelColor": "#475569",
+      "titleColor": "#334155",
+      "symbolStrokeColor": "#ffffff"
+    }
+  }
+}

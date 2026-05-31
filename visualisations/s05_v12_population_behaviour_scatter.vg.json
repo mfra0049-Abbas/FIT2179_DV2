@@ -1,0 +1,95 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": {
+    "text": "Population Size vs Digital Behaviour Score, 2025",
+    "subtitle": "Bubble size shows average behaviour interest. Dashed lines show national averages.",
+    "anchor": "start",
+    "fontSize": 18,
+    "subtitleFontSize": 12,
+    "color": "#0f172a",
+    "subtitleColor": "#475569"
+  },
+  "width": 860,
+  "height": 500,
+  "data": {
+    "url": "http://127.0.0.1:5500/data/06_digital_behaviour_score_by_state_2025.csv"
+  },
+  "transform": [
+    {
+      "joinaggregate": [
+        { "op": "mean", "field": "population_million",      "as": "avg_population" },
+        { "op": "mean", "field": "digital_behaviour_score", "as": "avg_score" }
+      ]
+    }
+  ],
+  "layer": [
+    {
+      "mark": { "type": "rule", "stroke": "#cbd5e1", "strokeDash": [5, 4], "strokeWidth": 1.2 },
+      "encoding": {
+        "x": { "aggregate": "mean", "field": "population_million", "type": "quantitative", "scale": { "domain": [0, 8] } }
+      }
+    },
+    {
+      "mark": { "type": "rule", "stroke": "#cbd5e1", "strokeDash": [5, 4], "strokeWidth": 1.2 },
+      "encoding": {
+        "y": { "aggregate": "mean", "field": "digital_behaviour_score", "type": "quantitative", "scale": { "domain": [55, 78] } }
+      }
+    },
+    {
+      "mark": { "type": "circle", "opacity": 0.88, "stroke": "#ffffff", "strokeWidth": 2 },
+      "encoding": {
+        "x": {
+          "field": "population_million",
+          "type": "quantitative",
+          "title": "Population (million)",
+          "scale": { "domain": [0, 8] },
+          "axis": { "grid": true, "gridColor": "#f1f5f9", "labelColor": "#475569", "titleColor": "#334155", "titleFontWeight": "bold", "tickCount": 9 }
+        },
+        "y": {
+          "field": "digital_behaviour_score",
+          "type": "quantitative",
+          "title": "Digital behaviour score",
+          "scale": { "domain": [55, 78] },
+          "axis": { "grid": true, "gridColor": "#f1f5f9", "labelColor": "#475569", "titleColor": "#334155", "titleFontWeight": "bold" }
+        },
+        "size": {
+          "field": "average_digital_behaviour_interest",
+          "type": "quantitative",
+          "title": "Avg behaviour interest",
+          "scale": { "range": [150, 1200] },
+          "legend": { "orient": "bottom" }
+        },
+        "color": {
+          "field": "region_group",
+          "type": "nominal",
+          "title": "Region",
+          "scale": {
+            "domain": ["Federal Territory", "Peninsular Malaysia", "East Malaysia"],
+            "range": ["#0f172a", "#2563eb", "#38bdf8"]
+          },
+          "legend": { "orient": "bottom" }
+        },
+        "tooltip": [
+          { "field": "state",                              "type": "nominal",      "title": "State" },
+          { "field": "region_group",                       "type": "nominal",      "title": "Region" },
+          { "field": "population_million",                 "type": "quantitative", "title": "Population (million)",       "format": ".2f" },
+          { "field": "digital_behaviour_score",            "type": "quantitative", "title": "Digital behaviour score",    "format": ".1f" },
+          { "field": "average_digital_behaviour_interest", "type": "quantitative", "title": "Avg behaviour interest",     "format": ".1f" },
+          { "field": "dominant_digital_behaviour",         "type": "nominal",      "title": "Dominant behaviour" }
+        ]
+      }
+    }
+  ],
+  "config": {
+    "font": "Inter, Arial, sans-serif",
+    "background": "#ffffff",
+    "axis": { "domain": false, "tickColor": "#e2e8f0" },
+    "view": { "stroke": "#dbeafe", "strokeWidth": 1 },
+    "legend": {
+      "labelFontSize": 11,
+      "titleFontSize": 12,
+      "labelColor": "#475569",
+      "titleColor": "#334155"
+    }
+  }
+}

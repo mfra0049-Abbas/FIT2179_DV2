@@ -1,0 +1,126 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": {
+    "text": "Dominant Digital Behaviour by State, 2025",
+    "subtitle": "Each state is positioned by its strongest digital behaviour interest index and coloured by the dominant behaviour category.",
+    "anchor": "start",
+    "fontSize": 18,
+    "subtitleFontSize": 12,
+    "color": "#0f172a",
+    "subtitleColor": "#475569"
+  },
+  "width": 860,
+  "height": 470,
+  "data": {
+    "url": "data/06_digital_behaviour_score_by_state_2025.csv"
+  },
+  "mark": {
+    "type": "circle",
+    "size": 270,
+    "opacity": 0.9,
+    "stroke": "#ffffff",
+    "strokeWidth": 1.6
+  },
+  "encoding": {
+    "y": {
+      "field": "state",
+      "type": "nominal",
+      "title": null,
+      "sort": {
+        "field": "dominant_interest_index",
+        "order": "descending"
+      },
+      "axis": {
+        "labelFontSize": 11,
+        "labelColor": "#334155",
+        "labelLimit": 160
+      }
+    },
+    "x": {
+      "field": "dominant_interest_index",
+      "type": "quantitative",
+      "title": "Dominant interest index",
+      "scale": {
+        "domain": [50, 105]
+      },
+      "axis": {
+        "grid": true,
+        "labelColor": "#475569",
+        "titleColor": "#334155",
+        "titleFontWeight": "bold"
+      }
+    },
+    "color": {
+      "field": "dominant_digital_behaviour",
+      "type": "nominal",
+      "title": "Dominant behaviour",
+      "scale": {
+        "range": [
+          "#0f172a",
+          "#1d4ed8",
+          "#0284c7",
+          "#06b6d4",
+          "#7dd3fc"
+        ]
+      },
+      "legend": {
+        "orient": "bottom",
+        "columns": 3
+      }
+    },
+    "tooltip": [
+      {
+        "field": "state",
+        "type": "nominal",
+        "title": "State"
+      },
+      {
+        "field": "region_group",
+        "type": "nominal",
+        "title": "Region"
+      },
+      {
+        "field": "dominant_digital_behaviour",
+        "type": "nominal",
+        "title": "Dominant behaviour"
+      },
+      {
+        "field": "dominant_interest_index",
+        "type": "quantitative",
+        "title": "Dominant interest index",
+        "format": ".1f"
+      },
+      {
+        "field": "digital_behaviour_score",
+        "type": "quantitative",
+        "title": "Overall digital behaviour score",
+        "format": ".1f"
+      },
+      {
+        "field": "population_million",
+        "type": "quantitative",
+        "title": "Population (million)",
+        "format": ".2f"
+      }
+    ]
+  },
+  "config": {
+    "font": "Inter, Arial, sans-serif",
+    "background": "#ffffff",
+    "axis": {
+      "domain": false,
+      "tickColor": "#cbd5e1",
+      "gridColor": "#e2e8f0"
+    },
+    "view": {
+      "stroke": "#dbeafe",
+      "strokeWidth": 1
+    },
+    "legend": {
+      "labelFontSize": 11,
+      "titleFontSize": 12,
+      "labelColor": "#475569",
+      "titleColor": "#334155"
+    }
+  }
+}

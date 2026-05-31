@@ -1,0 +1,179 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": {
+    "text": "Online Banking Dominates Average Search Interest",
+    "subtitle": "A lollipop ranking summarises average Google Trends interest across digital behaviour categories from 2022 to 2025.",
+    "anchor": "start",
+    "fontSize": 18,
+    "subtitleFontSize": 12,
+    "color": "#0f172a",
+    "subtitleColor": "#475569"
+  },
+  "width": 620,
+  "height": 320,
+  "data": {
+    "url": "../data/03_google_trends_digital_behaviour_interest_over_time_2022_2025.csv"
+  },
+  "transform": [
+    {
+      "aggregate": [
+        {
+          "op": "mean",
+          "field": "interest_index",
+          "as": "average_interest"
+        }
+      ],
+      "groupby": ["term_label"]
+    },
+    {
+      "calculate": "0",
+      "as": "start_value"
+    },
+    {
+      "calculate": "format(datum.average_interest, '.1f')",
+      "as": "average_label"
+    }
+  ],
+  "encoding": {
+    "y": {
+      "field": "term_label",
+      "type": "nominal",
+      "title": null,
+      "sort": {
+        "field": "average_interest",
+        "order": "descending"
+      },
+      "axis": {
+        "labelFontSize": 12,
+        "labelLimit": 190,
+        "labelColor": "#334155"
+      }
+    },
+    "x": {
+      "field": "average_interest",
+      "type": "quantitative",
+      "title": "Average Google Trends interest index",
+      "scale": {
+        "domain": [0, 40]
+      },
+      "axis": {
+        "gridColor": "#e6e8ec",
+        "labelFontSize": 11,
+        "titleFontSize": 12,
+        "titleColor": "#334155",
+        "labelColor": "#475569"
+      }
+    }
+  },
+  "layer": [
+    {
+      "mark": {
+        "type": "rule",
+        "strokeWidth": 5
+      },
+      "encoding": {
+        "x": {
+          "field": "start_value",
+          "type": "quantitative"
+        },
+        "x2": {
+          "field": "average_interest"
+        },
+        "color": {
+          "field": "term_label",
+          "type": "nominal",
+          "legend": null,
+          "scale": {
+            "domain": [
+              "Artificial intelligence",
+              "Digital wallet",
+              "Online banking",
+              "Online shopping",
+              "Online streaming"
+            ],
+            "range": [
+              "#2563eb",
+              "#0f766e",
+              "#7c3aed",
+              "#f97316",
+              "#dc2626"
+            ]
+          }
+        }
+      }
+    },
+    {
+      "mark": {
+        "type": "point",
+        "filled": true,
+        "size": 180,
+        "stroke": "#ffffff",
+        "strokeWidth": 1.5
+      },
+      "encoding": {
+        "color": {
+          "field": "term_label",
+          "type": "nominal",
+          "legend": null,
+          "scale": {
+            "domain": [
+              "Artificial intelligence",
+              "Digital wallet",
+              "Online banking",
+              "Online shopping",
+              "Online streaming"
+            ],
+            "range": [
+              "#2563eb",
+              "#0f766e",
+              "#7c3aed",
+              "#f97316",
+              "#dc2626"
+            ]
+          }
+        },
+        "tooltip": [
+          {
+            "field": "term_label",
+            "type": "nominal",
+            "title": "Digital behaviour"
+          },
+          {
+            "field": "average_interest",
+            "type": "quantitative",
+            "title": "Average interest",
+            "format": ".1f"
+          }
+        ]
+      }
+    },
+    {
+      "mark": {
+        "type": "text",
+        "align": "left",
+        "baseline": "middle",
+        "dx": 10,
+        "fontSize": 12,
+        "fontWeight": "bold",
+        "color": "#0f172a"
+      },
+      "encoding": {
+        "text": {
+          "field": "average_label",
+          "type": "nominal"
+        }
+      }
+    }
+  ],
+  "config": {
+    "font": "Inter, Arial, sans-serif",
+    "background": "#ffffff",
+    "axis": {
+      "domainColor": "#cbd5e1",
+      "tickColor": "#cbd5e1"
+    },
+    "view": {
+      "stroke": null
+    }
+  }
+}

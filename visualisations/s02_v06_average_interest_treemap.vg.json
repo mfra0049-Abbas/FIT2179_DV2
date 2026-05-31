@@ -1,0 +1,350 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": {
+    "text": "Search Interest Share by Digital Behaviour",
+    "subtitle": "Treemap-style blocks summarise average Google Trends interest from 2022 to 2025.",
+    "anchor": "start",
+    "fontSize": 18,
+    "subtitleFontSize": 12,
+    "color": "#0f172a",
+    "subtitleColor": "#475569"
+  },
+  "width": 520,
+  "height": 320,
+  "data": {
+    "url": "../data/03_google_trends_digital_behaviour_interest_over_time_2022_2025.csv"
+  },
+  "transform": [
+    {
+      "aggregate": [
+        {
+          "op": "mean",
+          "field": "interest_index",
+          "as": "average_interest"
+        }
+      ],
+      "groupby": ["term_label"]
+    },
+    {
+      "joinaggregate": [
+        {
+          "op": "sum",
+          "field": "average_interest",
+          "as": "total_interest"
+        }
+      ]
+    },
+    {
+      "calculate": "datum.average_interest / datum.total_interest * 100",
+      "as": "share_percent"
+    },
+    {
+      "calculate": "format(datum.share_percent, '.1f') + '%'",
+      "as": "share_label"
+    },
+
+    {
+      "calculate": "datum.term_label == 'Online banking' ? 0 : 79",
+      "as": "x0"
+    },
+    {
+      "calculate": "datum.term_label == 'Online banking' ? 79 : 100",
+      "as": "x1"
+    },
+
+    {
+      "calculate": "datum.term_label == 'Online banking' ? 0 : datum.term_label == 'Online shopping' ? 0 : datum.term_label == 'Artificial intelligence' ? 46 : datum.term_label == 'Online streaming' ? 73 : 94",
+      "as": "y0"
+    },
+    {
+      "calculate": "datum.term_label == 'Online banking' ? 100 : datum.term_label == 'Online shopping' ? 46 : datum.term_label == 'Artificial intelligence' ? 73 : datum.term_label == 'Online streaming' ? 94 : 100",
+      "as": "y1"
+    },
+
+    {
+      "calculate": "(datum.x0 + datum.x1) / 2",
+      "as": "cx"
+    },
+    {
+      "calculate": "(datum.y0 + datum.y1) / 2",
+      "as": "cy"
+    }
+  ],
+  "layer": [
+    {
+      "mark": {
+        "type": "rect",
+        "cornerRadius": 2,
+        "stroke": "#ffffff",
+        "strokeWidth": 1
+      },
+      "encoding": {
+        "x": {
+          "field": "x0",
+          "type": "quantitative",
+          "scale": {
+            "domain": [0, 100]
+          },
+          "axis": null
+        },
+        "x2": {
+          "field": "x1"
+        },
+        "y": {
+          "field": "y0",
+          "type": "quantitative",
+          "scale": {
+            "domain": [0, 100],
+            "reverse": true
+          },
+          "axis": null
+        },
+        "y2": {
+          "field": "y1"
+        },
+        "color": {
+          "field": "term_label",
+          "type": "nominal",
+          "legend": null,
+          "scale": {
+            "domain": [
+              "Artificial intelligence",
+              "Digital wallet",
+              "Online banking",
+              "Online shopping",
+              "Online streaming"
+            ],
+            "range": [
+              "#2563eb",
+              "#0f766e",
+              "#7c3aed",
+              "#f97316",
+              "#ef4444"
+            ]
+          }
+        },
+        "tooltip": [
+          {
+            "field": "term_label",
+            "type": "nominal",
+            "title": "Digital behaviour"
+          },
+          {
+            "field": "average_interest",
+            "type": "quantitative",
+            "title": "Average interest",
+            "format": ".1f"
+          },
+          {
+            "field": "share_percent",
+            "type": "quantitative",
+            "title": "Share of average interest",
+            "format": ".1f"
+          }
+        ]
+      }
+    },
+
+    {
+      "transform": [
+        {
+          "filter": "datum.term_label == 'Online banking'"
+        }
+      ],
+      "mark": {
+        "type": "text",
+        "align": "center",
+        "baseline": "middle",
+        "dy": -18,
+        "font": "Inter, Arial, sans-serif",
+        "fontSize": 18,
+        "fontWeight": "bold",
+        "fill": "#ffffff"
+      },
+      "encoding": {
+        "x": {
+          "field": "cx",
+          "type": "quantitative",
+          "scale": {
+            "domain": [0, 100]
+          }
+        },
+        "y": {
+          "field": "cy",
+          "type": "quantitative",
+          "scale": {
+            "domain": [0, 100],
+            "reverse": true
+          }
+        },
+        "text": {
+          "field": "term_label",
+          "type": "nominal"
+        }
+      }
+    },
+
+    {
+      "transform": [
+        {
+          "filter": "datum.term_label == 'Online banking'"
+        }
+      ],
+      "mark": {
+        "type": "text",
+        "align": "center",
+        "baseline": "middle",
+        "dy": 20,
+        "font": "Inter, Arial, sans-serif",
+        "fontSize": 32,
+        "fontWeight": "bold",
+        "fill": "#ffffff"
+      },
+      "encoding": {
+        "x": {
+          "field": "cx",
+          "type": "quantitative",
+          "scale": {
+            "domain": [0, 100]
+          }
+        },
+        "y": {
+          "field": "cy",
+          "type": "quantitative",
+          "scale": {
+            "domain": [0, 100],
+            "reverse": true
+          }
+        },
+        "text": {
+          "field": "share_label",
+          "type": "nominal"
+        }
+      }
+    },
+
+    {
+      "transform": [
+        {
+          "filter": "datum.term_label != 'Online banking' && datum.term_label != 'Digital wallet'"
+        }
+      ],
+      "mark": {
+        "type": "text",
+        "align": "center",
+        "baseline": "middle",
+        "dy": -9,
+        "font": "Inter, Arial, sans-serif",
+        "fontSize": 10,
+        "fontWeight": "bold",
+        "fill": "#ffffff",
+        "limit": 95
+      },
+      "encoding": {
+        "x": {
+          "field": "cx",
+          "type": "quantitative",
+          "scale": {
+            "domain": [0, 100]
+          }
+        },
+        "y": {
+          "field": "cy",
+          "type": "quantitative",
+          "scale": {
+            "domain": [0, 100],
+            "reverse": true
+          }
+        },
+        "text": {
+          "field": "term_label",
+          "type": "nominal"
+        }
+      }
+    },
+
+    {
+      "transform": [
+        {
+          "filter": "datum.term_label != 'Online banking' && datum.term_label != 'Digital wallet'"
+        }
+      ],
+      "mark": {
+        "type": "text",
+        "align": "center",
+        "baseline": "middle",
+        "dy": 12,
+        "font": "Inter, Arial, sans-serif",
+        "fontSize": 14,
+        "fontWeight": "bold",
+        "fill": "#ffffff"
+      },
+      "encoding": {
+        "x": {
+          "field": "cx",
+          "type": "quantitative",
+          "scale": {
+            "domain": [0, 100]
+          }
+        },
+        "y": {
+          "field": "cy",
+          "type": "quantitative",
+          "scale": {
+            "domain": [0, 100],
+            "reverse": true
+          }
+        },
+        "text": {
+          "field": "share_label",
+          "type": "nominal"
+        }
+      }
+    },
+
+    {
+      "transform": [
+        {
+          "filter": "datum.term_label == 'Digital wallet'"
+        }
+      ],
+      "mark": {
+        "type": "text",
+        "align": "center",
+        "baseline": "middle",
+        "font": "Inter, Arial, sans-serif",
+        "fontSize": 10,
+        "fontWeight": "bold",
+        "fill": "#ffffff"
+      },
+      "encoding": {
+        "x": {
+          "field": "cx",
+          "type": "quantitative",
+          "scale": {
+            "domain": [0, 100]
+          }
+        },
+        "y": {
+          "field": "cy",
+          "type": "quantitative",
+          "scale": {
+            "domain": [0, 100],
+            "reverse": true
+          }
+        },
+        "text": {
+          "field": "share_label",
+          "type": "nominal"
+        }
+      }
+    }
+  ],
+  "config": {
+    "font": "Inter, Arial, sans-serif",
+    "background": "#ffffff",
+    "view": {
+      "stroke": null
+    }
+  }
+}

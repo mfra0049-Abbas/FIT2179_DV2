@@ -13,7 +13,7 @@
   "height": 460,
   "padding": { "left": 10, "right": 20, "top": 8, "bottom": 8 },
   "data": {
-    "url": "data/04_google_trends_digital_behaviour_by_state_2022_2025.csv"
+    "url": "../data/04_google_trends_digital_behaviour_by_state_2022_2025.csv"
   },
   "mark": {
     "type": "rect",

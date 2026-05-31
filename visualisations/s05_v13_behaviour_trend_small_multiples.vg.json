@@ -12,7 +12,7 @@
   "width": 250,
   "height": 130,
   "data": {
-    "url": "../data/03_google_trends_digital_behaviour_interest_over_time_2022_2025.csv"
+    "url": "data/03_google_trends_digital_behaviour_interest_over_time_2022_2025.csv"
   },
   "mark": {
     "type": "area",

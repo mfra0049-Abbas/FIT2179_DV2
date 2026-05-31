@@ -20,7 +20,7 @@
   "layer": [
     {
       "data": {
-        "url": "../data/05_malaysia_districts_coloured_by_state_score_vl_ready.geojson",
+        "url": "data/05_malaysia_districts_coloured_by_state_score_vl_ready.geojson",
         "format": {
           "type": "json",
           "property": "features"

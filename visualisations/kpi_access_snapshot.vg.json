@@ -12,7 +12,7 @@
   "width": 720,
   "height": 280,
   "data": {
-    "url": "../data/01_dosm_ict_access_full_2022_2025.csv"
+    "url": "data/01_dosm_ict_access_full_2022_2025.csv"
   },
   "transform": [
     {

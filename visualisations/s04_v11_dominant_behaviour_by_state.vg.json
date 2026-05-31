@@ -12,7 +12,7 @@
   "width": 860,
   "height": 470,
   "data": {
-    "url": "../data/06_digital_behaviour_score_by_state_2025.csv"
+    "url": "data/06_digital_behaviour_score_by_state_2025.csv"
   },
   "mark": {
     "type": "circle",
